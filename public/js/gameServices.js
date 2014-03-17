@@ -22,7 +22,6 @@ angular.module('myApp.gameServices', [])
       currentRound: currentRound
     };
 
-
   }).factory('score', function(){
 
   	var correctAnswerIds = [];
@@ -51,7 +50,6 @@ angular.module('myApp.gameServices', [])
     	}
     };
 
-
   }).factory('question', function(words, score, randomiser){
 
   	var currentId, word;
@@ -74,9 +72,23 @@ angular.module('myApp.gameServices', [])
     	definition: function(){
     		return word.def;
     	},
-
     };
 
+  }).factory('answers', function(words, randomiser, question){
+
+  	var answerList;
+		var idsToAvoid = [];
+
+		function correctAnswer(){
+			return words[question.currentId()].es;
+		}
+
+
+    return {
+    	correctAnswer: correctAnswer,
+
+    	
+    };
 
   }).factory('randomiser', function(words){
 
