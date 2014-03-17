@@ -49,4 +49,36 @@ angular.module('myApp.gameServices', [])
     };
 
 
+  }).factory('randomiser', function(words){
+
+  	function randomWord(){
+	    return Math.floor(Math.random() * words.length);
+	  }
+  	
+  	function newIdExcluding(numbers){
+
+  		function matchesAny(id, numbers){
+	      for(var i=0; i< numbers.length; i++){
+	        if(id === numbers[i]){
+	          return true;
+	        }
+	      }
+	    }
+	    var newId = randomWord();
+
+	    while(matchesAny(newId, numbers)){
+	      newId = randomWord();
+	    }
+	    return newId;
+	  }
+
+	  function ranker() {
+	  	return Math.random();
+	  }
+
+    return {
+    	newIdExcluding: newIdExcluding,
+    	ranker: ranker
+    };
+
   });
