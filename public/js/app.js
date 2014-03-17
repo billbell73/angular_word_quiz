@@ -13,9 +13,9 @@ angular.module('myApp', [
   $routeProvider.when('/home', {
     templateUrl: 'partials/home.html',
     controller: 'MyCtrl1'
-  }).when('/view2', {
-    templateUrl: 'partials/partial2.html',
-    controller: 'MyCtrl2'
+  }).when('/game', {
+    templateUrl: 'partials/game.html',
+    controller: 'GameCtrl'
   }).otherwise({
     redirectTo: '/home'
   });

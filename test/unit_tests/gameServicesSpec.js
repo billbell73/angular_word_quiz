@@ -1,4 +1,4 @@
-describe("Unit: Testing Services", function() {
+describe("Unit: Testing gameServices", function() {
 
   beforeEach(module('myApp'));
 
@@ -6,9 +6,5 @@ describe("Unit: Testing Services", function() {
     inject(function(game) {
     expect(game).not.toEqual(null);
   }));
-
   
-
-
-
 });

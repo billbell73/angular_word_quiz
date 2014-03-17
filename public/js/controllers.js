@@ -16,8 +16,9 @@ angular.module('myApp.controllers', [])
       $scope.name = 'Error!'
     });
 
-  }).controller('MyCtrl1', function($scope) {
-    // write Ctrl here
+  }).controller('GameCtrl', function($scope, game) {
+    
+    $scope.firstQuestion = game.firstQuestion;
 
   }).controller('MyCtrl2', function($scope) {
     // write Ctrl here
