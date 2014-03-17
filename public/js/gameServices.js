@@ -11,7 +11,7 @@ angular.module('myApp.gameServices', [])
     function currentRound(){
     	return {
     		roundNumber: score.nthRound(),
-    		questionWord: question.word(),
+    		questionWord: question.keyword(),
     		questionPhrase: question.phrase(),
     		answerList: answers.list(),
     	};
@@ -20,6 +20,29 @@ angular.module('myApp.gameServices', [])
     return {
       firstQuestion: firstQuestion,
       currentRound: currentRound
+    };
+
+
+  }).factory('question', function(words, score, randomiser){
+
+  	var currentId, word;
+
+  	getNew();
+
+  	function getNew(){
+  		currentId = randomiser.newIdExcluding(score.correctAnswerIds());
+  		word = words[currentId];
+  	}
+
+
+
+    return {
+    	getNew: getNew,
+    	currentId: function(){
+    		return currentId;
+    	}
+
+
     };
 
 

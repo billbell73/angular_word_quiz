@@ -1,4 +1,4 @@
-describe("Unit: Testing gameServices", function() {
+describe("Unit: Testing gmae in gameServices", function() {
 
 	var mockScore;
 	var mockQuestion;
@@ -13,7 +13,7 @@ describe("Unit: Testing gameServices", function() {
 	  };
 
 		mockQuestion = {
-	    word: function () {},
+	    keyword: function () {},
 	    phrase: function () {}
 	  };
 
