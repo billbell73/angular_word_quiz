@@ -74,20 +74,46 @@ angular.module('myApp.gameServices', [])
     	},
     };
 
-  }).factory('answers', function(words, randomiser, question){
+  }).factory('answers', function(words, score, question, randomiser){
 
-  	var answerList;
-		var idsToAvoid = [];
+  	var answerList, idsToAvoid;
+
+  	getNew();
+
+		function getNew(){
+			idsToAvoid = [];
+			idsToAvoid.push(score.correctAnswerIds());
+			answerList = [];
+			pushWrongAnswer();
+			pushWrongAnswer();
+			pushToList(correctAnswer(), question.currentId(), true)
+		}
+
+		function pushWrongAnswer(){
+			var wrongAnswerId = randomiser.newIdExcluding(idsToAvoid);
+			pushToList(words[wrongAnswerId].es, wrongAnswerId, false);
+			idsToAvoid.push(wrongAnswerId);
+		}
+
+		function pushToList(answer, answerId, isCorrect){
+	  	answerList.push({
+	  		answer: answer,
+	  		answerId: answerId,
+	  		isCorrect: isCorrect,
+	      rank: randomiser.ranker()
+	  	})
+	  }
 
 		function correctAnswer(){
 			return words[question.currentId()].es;
 		}
 
-
     return {
     	correctAnswer: correctAnswer,
-
-    	
+    	getNew: getNew,
+    	list: function () {
+    		return answerList;
+    	}
     };
 
   }).factory('randomiser', function(words){

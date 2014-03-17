@@ -1,4 +1,4 @@
-describe("Unit: Testing question in gameServices", function() {
+describe("Unit: Testing answers in gameServices", function() {
 
 	var mockScore;
   var mockQuestion;
@@ -9,7 +9,7 @@ describe("Unit: Testing question in gameServices", function() {
   	module('myApp');
 
 	  mockScore = {
-	    correctAnswerIds: function () { return [2,3] }
+	    correctAnswerIds: jasmine.createSpy('correctAnswerIds')
 	  };
 
     mockQuestion = {
@@ -17,7 +17,8 @@ describe("Unit: Testing question in gameServices", function() {
     };
 
 		mockRandomiser = {
-	    newIdExcluding: function () { return 4 },
+      newIdExcluding: function () { return 4 },
+	    ranker: function () {}
 	  };
 
 	  module(function ($provide) {
@@ -38,5 +39,23 @@ describe("Unit: Testing question in gameServices", function() {
     inject(function(answers) {
     expect(answers.correctAnswer()).toEqual('Sol');
   }));
+
+  it('returns 3 answers',
+    inject(function(answers) {
+    expect(answers.list().length).toEqual(3);
+  }));
+
+  it('includes correct answer in 3 answers returned',
+    inject(function(answers) {
+    expect(answers.list()[2].answer).toEqual('Sol');
+  }));
+
+  it('can be asked to refresh answers',
+    inject(function(answers) {
+    answers.getNew();
+    expect(mockScore.correctAnswerIds).toHaveBeenCalled();
+  }));
+
+
 
 });
