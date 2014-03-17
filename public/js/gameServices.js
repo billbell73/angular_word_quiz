@@ -28,12 +28,21 @@ angular.module('myApp.gameServices', [])
     	};
     }
 
+    function isOngoing() {
+  		if(recentAnswerCorrect && !finalRoundPlayed()){ return true; } 
+  	}
+
+  	function finalRoundPlayed() {
+  		return score.finalRoundPlayed();
+  	}
+
 
 
     return {
       currentRound: currentRound,
       updateGame: updateGame,
       newRound: newRound,
+      isOngoing: isOngoing,
       recentAnswerId: function(){
       	return recentAnswerId;
       },

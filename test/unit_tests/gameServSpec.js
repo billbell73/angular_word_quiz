@@ -10,7 +10,8 @@ describe("Unit: Testing game in gameServices", function() {
 
 	  mockScore = {
 	    nthRound: function () { return 2 },
-      addCorrectAnswer: jasmine.createSpy('addCorrectAnswer')
+      addCorrectAnswer: jasmine.createSpy('addCorrectAnswer'),
+      finalRoundPlayed: function() { return false }
 	  };
 
 		mockQuestion = {
@@ -66,6 +67,14 @@ describe("Unit: Testing game in gameServices", function() {
     game.newRound();
     expect(mockAnswers.getNew).toHaveBeenCalled();
   }));
+
+  it('can tell if game is ongoing',
+    inject(function(game) {
+    game.updateGame(5);
+    expect(game.isOngoing()).toBe(true);
+  }));
+
+
 
 
 
