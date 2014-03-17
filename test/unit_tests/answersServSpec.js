@@ -26,8 +26,11 @@ describe("Unit: Testing answers in gameServices", function() {
       $provide.value('question', mockQuestion);
       $provide.value('randomiser', mockRandomiser);
     });
-	 	
 
+    inject(function(answers) {
+      answers.getNew();
+    })
+	 	
 	});
 
   it('answers service should be reachable',

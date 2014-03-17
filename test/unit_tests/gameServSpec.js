@@ -9,16 +9,20 @@ describe("Unit: Testing game in gameServices", function() {
   	module('myApp');
 
 	  mockScore = {
-	    nthRound: function () { return 2 }
+	    nthRound: function () { return 2 },
+      addCorrectAnswer: jasmine.createSpy('addCorrectAnswer')
 	  };
 
 		mockQuestion = {
 	    keyword: function () {},
-	    definition: function () {}
+	    definition: function () {},
+      currentId: function() { return 5 },
+      getNew: function() {}
 	  };
 
 		mockAnswers = {
-	    list: function () {}
+	    list: function () {},
+      getNew: jasmine.createSpy('getNew')
 	  };
 
 	  module(function ($provide) {
@@ -39,10 +43,31 @@ describe("Unit: Testing game in gameServices", function() {
       expect(mockScore.nthRound()).toBe(2);
   }));
 
-   it('should retrieve roundNumber from score service',
+  it('should retrieve roundNumber from score service',
     inject(function(game) {
     expect(game.currentRound().roundNumber).toEqual(2);
   }));
+
+  it('updates local recentAnswer variables when answer given',
+    inject(function(game) {
+    game.updateGame(6);
+    expect(game.recentAnswerId()).toEqual(6);
+    expect(game.recentAnswerCorrect()).toEqual(false);
+  }));
+
+  it('updates answers service when answer given',
+    inject(function(game) {
+    game.updateGame(5);
+    expect(mockScore.addCorrectAnswer).toHaveBeenCalledWith(true, 5);
+  }));
+
+  it('can get new question and answers',
+    inject(function(game) {
+    game.newRound();
+    expect(mockAnswers.getNew).toHaveBeenCalled();
+  }));
+
+
 
    
 

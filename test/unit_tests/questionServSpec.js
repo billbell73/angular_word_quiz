@@ -19,6 +19,10 @@ describe("Unit: Testing question in gameServices", function() {
       $provide.value('score', mockScore);
       $provide.value('randomiser', mockRandomiser);
     });
+
+    inject(function(question) {
+      question.getNew();
+    })
 	 	
 
 	});

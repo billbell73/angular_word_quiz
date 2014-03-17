@@ -9,11 +9,13 @@ describe("Unit: Testing Controllers", function() {
     module('myApp');
 
     mockGame = {
+        newRound: function(){},
         currentRound: function(){
-        								return { 
-        									roundNumber: 2,
-        									keyword: "Red"}
-        							}
+          return { 
+        		roundNumber: 2,
+        		keyword: "Red"
+          };
+        }
     };
 
     inject(function(_$httpBackend_, $rootScope, $controller){

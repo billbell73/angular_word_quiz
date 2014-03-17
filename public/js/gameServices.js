@@ -6,7 +6,18 @@
 angular.module('myApp.gameServices', [])
   .factory('game', function(words, score, question, answers){
 
-    var firstQuestion = words[0].en;
+    var recentAnswerId, recentAnswerCorrect;
+
+    function updateGame(answerId){
+    	recentAnswerId = answerId;
+    	recentAnswerCorrect = answerId === question.currentId();
+    	score.addCorrectAnswer(recentAnswerCorrect, answerId)
+    }
+
+    function newRound(){
+    	question.getNew();
+    	answers.getNew();
+    }
 
     function currentRound(){
     	return {
@@ -17,9 +28,18 @@ angular.module('myApp.gameServices', [])
     	};
     }
 
+
+
     return {
-      firstQuestion: firstQuestion,
-      currentRound: currentRound
+      currentRound: currentRound,
+      updateGame: updateGame,
+      newRound: newRound,
+      recentAnswerId: function(){
+      	return recentAnswerId;
+      },
+      recentAnswerCorrect: function() {
+      	return recentAnswerCorrect;
+      }
     };
 
   }).factory('score', function(){
@@ -54,8 +74,6 @@ angular.module('myApp.gameServices', [])
 
   	var currentId, word;
 
-  	getNew();
-
   	function getNew(){
   		currentId = randomiser.newIdExcluding(score.correctAnswerIds());
   		word = words[currentId];
@@ -77,8 +95,6 @@ angular.module('myApp.gameServices', [])
   }).factory('answers', function(words, score, question, randomiser){
 
   	var answerList, idsToAvoid;
-
-  	getNew();
 
 		function getNew(){
 			idsToAvoid = [];

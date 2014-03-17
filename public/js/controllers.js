@@ -18,6 +18,7 @@ angular.module('myApp.controllers', [])
 
   }).controller('GameCtrl', function($scope, game) {
     
+    game.newRound();
     $scope.currentRound = game.currentRound();
 
   }).controller('MyCtrl2', function($scope) {
