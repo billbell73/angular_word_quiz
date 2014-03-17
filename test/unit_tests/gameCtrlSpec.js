@@ -9,7 +9,11 @@ describe("Unit: Testing Controllers", function() {
     module('myApp');
 
     mockGame = {
-        firstQuestion: 'Good morning',
+        currentRound: function(){
+        								return { 
+        									roundNumber: 2,
+        									keyword: "Red"}
+        							}
     };
 
     inject(function(_$httpBackend_, $rootScope, $controller){
@@ -22,8 +26,8 @@ describe("Unit: Testing Controllers", function() {
 
 	describe("game controller", function(){
 
-		it("should store firstQuestion variable on scope ", function(){
-			expect(scope.firstQuestion).toEqual("Good morning");
+		it("stores currentRound data on scope ", function(){
+			expect(scope.currentRound.roundNumber).toEqual(2);
 		});
 
 	});

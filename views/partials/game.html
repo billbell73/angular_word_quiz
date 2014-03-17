@@ -1,2 +1,47 @@
+<div class="container">
+  <div class="jumbotron">
 
-{{firstQuestion}}
+    <div class="row">
+      
+      <div class="col-md-6"> 
+        <h2>Round {{currentRound.roundNumber}}</h2>
+        <p>"{{currentRound.keyword}}": {{currentRound.definition}}</p>
+        <p>What is "{{currentRound.keyword}}" in Spanish?</p>
+        
+      </div>
+       
+      <div class="col-md-1"></div>
+
+      <div class="answers col-md-4">
+        <div  ng-repeat="answer in currentRound.answerList | orderBy:'rank'" >
+            <button class="btn btn-lg" id="{{answer.isCorrect}}" 
+                    ng-click="submitAnswer(answer.id)" 
+                    ng-disabled="endGame" 
+                    ng-class="getClass(answer.id)">
+              {{answer.word}}
+            </button> 
+        </div>
+      </div>
+
+    </div>
+  
+    <div class="row alert" ng-class="commentary.alert">
+      {{commentary.message}}
+    </div>
+
+    <div ng-show="endGame">
+
+      <form ng-submit="updateHighScores()" >
+        <span>Enter your name for the scoreboard:</span>&nbsp
+        <input class="input-lg" type="text" ng-model="playerName">
+        <input class="btn-lg" type="submit" id="submit" value="Submit" />
+      </form>
+    
+      <p> Or
+        <a href='/game' target="_self">play again</a>
+      </p>
+
+    </div>
+  
+  </div>
+</div>

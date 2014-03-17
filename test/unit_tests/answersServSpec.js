@@ -47,7 +47,7 @@ describe("Unit: Testing answers in gameServices", function() {
 
   it('includes correct answer in 3 answers returned',
     inject(function(answers) {
-    expect(answers.list()[2].answer).toEqual('Sol');
+    expect(answers.list()[2].word).toEqual('Sol');
   }));
 
   it('can be asked to refresh answers',

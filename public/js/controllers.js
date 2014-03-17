@@ -18,7 +18,7 @@ angular.module('myApp.controllers', [])
 
   }).controller('GameCtrl', function($scope, game) {
     
-    $scope.firstQuestion = game.firstQuestion;
+    $scope.currentRound = game.currentRound();
 
   }).controller('MyCtrl2', function($scope) {
     // write Ctrl here

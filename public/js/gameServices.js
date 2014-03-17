@@ -97,8 +97,8 @@ angular.module('myApp.gameServices', [])
 
 		function pushToList(answer, answerId, isCorrect){
 	  	answerList.push({
-	  		answer: answer,
-	  		answerId: answerId,
+	  		word: answer,
+	  		id: answerId,
 	  		isCorrect: isCorrect,
 	      rank: randomiser.ranker()
 	  	})
