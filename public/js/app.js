@@ -5,7 +5,8 @@
 angular.module('myApp', [
   'myApp.controllers',
   'myApp.filters',
-  'myApp.services',
+  'myApp.wordServices',
+  'myApp.gameServices',
   'myApp.directives',
   'ngRoute'
 ]).config(function($routeProvider, $locationProvider) {
