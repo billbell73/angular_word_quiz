@@ -1,4 +1,4 @@
-describe("Unit: Testing question in gameServices", function() {
+describe("Unit: Testing randomiser in gameServices", function() {
 
 
   beforeEach(function() {
@@ -7,7 +7,7 @@ describe("Unit: Testing question in gameServices", function() {
 
 	});
 
-  it('gameServices should contain a question service',
+  it('randomiser service should be reachable',
     inject(function(randomiser) {
     expect(randomiser).not.toEqual(null);
   }));

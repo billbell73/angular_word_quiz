@@ -23,6 +23,35 @@ angular.module('myApp.gameServices', [])
     };
 
 
+  }).factory('score', function(){
+
+  	var correctAnswerIds = [];
+
+  	function addCorrectAnswer(isCorrect, id){
+  		if(isCorrect) {
+  			correctAnswerIds.push(id);
+  		}
+  	}
+
+		function clearAnswers(){
+  		correctAnswerIds = [];
+  	}
+
+    return {
+    	addCorrectAnswer: addCorrectAnswer,
+    	clearAnswers: clearAnswers,
+    	correctAnswerIds: function () {
+    		return correctAnswerIds;
+    	},
+    	nthRound: function(){
+    		return correctAnswerIds.length + 1;
+    	},
+    	finalRoundPlayed: function(){
+    		return correctAnswerIds.length > 2;
+    	}
+    };
+
+
   }).factory('question', function(words, score, randomiser){
 
   	var currentId, word;

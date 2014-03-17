@@ -1,4 +1,4 @@
-describe("Unit: Testing Services", function() {
+describe("Unit: Testing words service", function() {
 
   beforeEach(module('myApp'));
 

@@ -23,7 +23,7 @@ describe("Unit: Testing question in gameServices", function() {
 
 	});
 
-  it('gameServices should contain a question service',
+  it('question service should be reachable',
     inject(function(question) {
     expect(question).not.toEqual(null);
   }));

@@ -1,4 +1,4 @@
-describe("Unit: Testing gmae in gameServices", function() {
+describe("Unit: Testing game in gameServices", function() {
 
 	var mockScore;
 	var mockQuestion;
