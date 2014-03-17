@@ -28,14 +28,19 @@ describe("Unit: Testing question in gameServices", function() {
     expect(question).not.toEqual(null);
   }));
 
-  // it('should return value from mock dependency', inject(function (game) {
-  //     expect(mockScore.nthRound()).toBe(2);
-  // }));
-
-   it('should generate new question',
+  it('should return Id of current question',
     inject(function(question) {
-    question.getNew();
     expect(question.currentId()).toEqual(4);
+  }));
+
+  it('should return current question word',
+    inject(function(question) {
+    expect(question.keyword()).toEqual('Germany');
+  }));
+
+   it('should return current question definition',
+    inject(function(question) {
+    expect(question.definition()).toMatch(/\Berlin/);
   }));
 
    

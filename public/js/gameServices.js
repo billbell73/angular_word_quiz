@@ -11,8 +11,8 @@ angular.module('myApp.gameServices', [])
     function currentRound(){
     	return {
     		roundNumber: score.nthRound(),
-    		questionWord: question.keyword(),
-    		questionPhrase: question.phrase(),
+    		keyword: question.keyword(),
+    		definition: question.definition(),
     		answerList: answers.list(),
     	};
     }
@@ -34,14 +34,17 @@ angular.module('myApp.gameServices', [])
   		word = words[currentId];
   	}
 
-
-
     return {
     	getNew: getNew,
     	currentId: function(){
     		return currentId;
-    	}
-
+    	},
+    	keyword: function(){
+    		return word.en;
+    	},
+    	definition: function(){
+    		return word.def;
+    	},
 
     };
 

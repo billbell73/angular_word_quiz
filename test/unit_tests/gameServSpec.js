@@ -14,7 +14,7 @@ describe("Unit: Testing gmae in gameServices", function() {
 
 		mockQuestion = {
 	    keyword: function () {},
-	    phrase: function () {}
+	    definition: function () {}
 	  };
 
 		mockAnswers = {
