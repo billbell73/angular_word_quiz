@@ -43,6 +43,7 @@ angular.module('myApp.gameServices', [])
       updateGame: updateGame,
       newRound: newRound,
       isOngoing: isOngoing,
+      clearScore: score.clearAnswers,
       recentAnswerId: function(){
       	return recentAnswerId;
       },

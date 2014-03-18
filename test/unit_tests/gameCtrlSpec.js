@@ -9,7 +9,10 @@ describe("Unit: Testing Controllers", function() {
     module('myApp');
 
     mockGame = {
+        clearScore: function() {},
         newRound: function(){},
+        isOngoing: function () { return false; },
+        updateGame: jasmine.createSpy('updateGame'),
         currentRound: function(){
           return { 
         		roundNumber: 2,
@@ -31,6 +34,11 @@ describe("Unit: Testing Controllers", function() {
 		it("stores currentRound data on scope ", function(){
 			expect(scope.currentRound.roundNumber).toEqual(2);
 		});
+
+    it("should call updateGame method when answer submitted", function(){
+      scope.submitAnswer();
+      expect(mockGame.updateGame).toHaveBeenCalled();
+    });
 
 	});
 

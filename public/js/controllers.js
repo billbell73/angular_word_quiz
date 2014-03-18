@@ -17,9 +17,22 @@ angular.module('myApp.controllers', [])
     });
 
   }).controller('GameCtrl', function($scope, game) {
+
+    game.clearScore();
+    renderNewRound(); 
     
-    game.newRound();
-    $scope.currentRound = game.currentRound();
+    function renderNewRound() {
+      game.newRound();
+      $scope.currentRound = game.currentRound();
+    }
+
+    $scope.submitAnswer = function(answerId){
+      game.updateGame(answerId);
+      if (game.isOngoing()) {
+        renderNewRound()
+      }
+    }
+
 
   }).controller('MyCtrl2', function($scope) {
     // write Ctrl here
