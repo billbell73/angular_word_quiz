@@ -106,12 +106,17 @@ angular.module('myApp.gameServices', [])
   	var answerList, idsToAvoid;
 
 		function getNew(){
-			idsToAvoid = [];
-			idsToAvoid.push(score.correctAnswerIds());
+			populateIdsToAvoid();
 			answerList = [];
 			pushWrongAnswer();
 			pushWrongAnswer();
 			pushToList(correctAnswer(), question.currentId(), true)
+		}
+
+		function populateIdsToAvoid(){
+			idsToAvoid = [];
+			idsToAvoid.push(score.correctAnswerIds());
+			idsToAvoid.push(question.currentId());
 		}
 
 		function pushWrongAnswer(){
