@@ -40,6 +40,11 @@ describe("Unit: Testing Controllers", function() {
       expect(mockGame.updateGame).toHaveBeenCalled();
     });
 
+    it("should set endGame to true if game not ongoing", function(){
+      scope.submitAnswer();
+      expect(scope.endGame).toEqual(true);
+    });
+
 	});
 
 });

@@ -29,7 +29,9 @@ angular.module('myApp.controllers', [])
     $scope.submitAnswer = function(answerId){
       game.updateGame(answerId);
       if (game.isOngoing()) {
-        renderNewRound()
+        renderNewRound();
+      } else {
+        $scope.endGame = true;
       }
     }
 
