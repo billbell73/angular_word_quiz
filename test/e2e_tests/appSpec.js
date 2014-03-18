@@ -7,8 +7,8 @@ describe('E2E: Testing Scorer view', function() {
   var input = element(by.model('playerName'));
   var submitButton = $('form #submit');
   var barryRow = $('#Barry');
-  var wrongAnswerAlert = $('.alert-danger');
-  var correctAnswerAlert = $('.alert-success');
+  var redAlert = $('.alert-danger');
+  var greenAlert = $('.alert-success');
 
 
 	beforeEach(function() {
@@ -30,7 +30,6 @@ describe('E2E: Testing Scorer view', function() {
     correctAnswer.click();
     expect(submitText.isDisplayed()).toEqual(false)
     correctAnswer.click();
-    expect(correctAnswer.isEnabled()).toEqual(false);
     expect(submitText.isDisplayed()).toEqual(true)
     expect(submitText.getText()).toEqual('Enter your name for the scoreboard:');
   });
@@ -53,7 +52,21 @@ describe('E2E: Testing Scorer view', function() {
 
   it('red alert box on wrong answer', function() {
     wrongAnswer.click();
-    expect(wrongAnswerAlert.isDisplayed()).toEqual(true);
+    expect(redAlert.isDisplayed()).toEqual(true);
+  });
+
+  it('button clicked turns red on wrong answer ', function() {
+    wrongAnswer.click();
+    expect(wrongAnswer.getAttribute('class')).toContain('btn-danger');
+  });
+
+  it('final correct answer delivers green alert box and button', function() {
+    correctAnswer.click();
+    correctAnswer.click();
+    correctAnswer.click();
+    expect(greenAlert.isDisplayed()).toEqual(true);
+    expect(correctAnswer.getAttribute('class')).toContain('btn-success');
+    expect(correctAnswer.isEnabled()).toEqual(false);
   });
 
 });
