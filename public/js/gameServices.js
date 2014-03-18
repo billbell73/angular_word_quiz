@@ -119,8 +119,8 @@ angular.module('myApp.gameServices', [])
 
 		function populateIdsToAvoid(){
 			idsToAvoid = [];
-			idsToAvoid.push(score.correctAnswerIds());
 			idsToAvoid.push(question.currentId());
+      idsToAvoid = idsToAvoid.concat(score.correctAnswerIds());
 		}
 
 		function pushWrongAnswer(){
