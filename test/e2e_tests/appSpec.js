@@ -43,6 +43,12 @@ describe('E2E: Testing Scorer view', function() {
     expect(barryRow.getText()).toEqual('Barry: 1');
   });
 
+  it('when game finished buttons disabled', function() {
+    wrongAnswer.click();
+    expect(wrongAnswer.isEnabled()).toEqual(false);
+    expect(correctAnswer.isEnabled()).toEqual(false);
+  });
+
 
 
 });
