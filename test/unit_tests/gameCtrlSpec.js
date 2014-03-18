@@ -1,6 +1,7 @@
-describe("Unit: Testing Controllers", function() {
+describe("Unit: Testing Game Controller", function() {
 	var scope,
-			controller;
+			controller,
+      httpBackend;
 
 	var mockGame;
 
@@ -13,6 +14,7 @@ describe("Unit: Testing Controllers", function() {
         newRound: function(){},
         isOngoing: function () { return false; },
         updateGame: jasmine.createSpy('updateGame'),
+        score: function(){ return 2 },
         currentRound: function(){
           return { 
         		roundNumber: 2,
@@ -23,6 +25,7 @@ describe("Unit: Testing Controllers", function() {
 
     inject(function(_$httpBackend_, $rootScope, $controller){
      	scope = $rootScope.$new();
+      httpBackend = _$httpBackend_;
     	controller = $controller("GameCtrl", {$scope: scope, 
     																				game: mockGame });
     });
@@ -43,6 +46,15 @@ describe("Unit: Testing Controllers", function() {
     it("should set endGame to true if game not ongoing", function(){
       scope.submitAnswer();
       expect(scope.endGame).toEqual(true);
+    });
+
+    it('should do post request when highscore submitted', function() {
+      scope.playerName = 'Dave';
+      httpBackend.expectPOST('api/highscore', {
+          playerName: 'Dave',
+          score: 3
+      }).respond({});
+      scope.updateHighScores();
     });
 
 	});

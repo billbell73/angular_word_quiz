@@ -5,18 +5,11 @@
 angular.module('myApp.controllers', [])
   .controller('AppCtrl', function($scope, $http) {
 
-    $http({
-      method: 'GET',
-      url: '/api/name'
-    }).
-    success(function(data, status, headers, config) {
-      $scope.name = data.name;
-    }).
-    error(function(data, status, headers, config) {
-      $scope.name = 'Error!'
-    });
 
-  }).controller('GameCtrl', function($scope, game) {
+  }).controller('GameCtrl', function($scope,
+                                     $http, 
+                                     $location,
+                                      game) {
 
     game.clearScore();
     renderNewRound(); 
@@ -35,8 +28,19 @@ angular.module('myApp.controllers', [])
       }
     }
 
+    $scope.updateHighScores = function() {
+      $http({
+        method: 'POST',
+        url: 'api/highscore',
+        data: { 
+              playerName: this.playerName,
+              score: game.score()
+        }
+      }).
+      success(function() {
+        $location.path("/highscore");
+      })
+    }
 
-  }).controller('MyCtrl2', function($scope) {
-    // write Ctrl here
 
   });

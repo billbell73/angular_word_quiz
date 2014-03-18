@@ -44,6 +44,7 @@ angular.module('myApp.gameServices', [])
       newRound: newRound,
       isOngoing: isOngoing,
       clearScore: score.clearAnswers,
+      score: score.correctAnswerCount,
       recentAnswerId: function(){
       	return recentAnswerId;
       },
@@ -77,6 +78,9 @@ angular.module('myApp.gameServices', [])
     	},
     	finalRoundPlayed: function(){
     		return correctAnswerIds.length > 2;
+    	},
+    	correctAnswerCount: function(){
+    		return correctAnswerIds.length;
     	}
     };
 

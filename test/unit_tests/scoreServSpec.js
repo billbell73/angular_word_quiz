@@ -35,6 +35,11 @@ describe("Unit: Testing score in gameServices", function() {
     expect(score.finalRoundPlayed()).toEqual(false);
   }));
 
+   it('knows current score',
+    inject(function(score) {
+    expect(score.correctAnswerCount()).toEqual(2);
+  }));
+
    
 
 
