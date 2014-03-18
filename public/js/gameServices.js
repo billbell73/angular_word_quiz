@@ -29,20 +29,19 @@ angular.module('myApp.gameServices', [])
     }
 
     function isOngoing() {
-  		if(recentAnswerCorrect && !finalRoundPlayed()){ return true; } 
+  		if(recentAnswerCorrect && !threeCorrectAnswers()){ return true; } 
   	}
 
-  	function finalRoundPlayed() {
-  		return score.finalRoundPlayed();
+  	function threeCorrectAnswers() {
+  		return score.threeCorrectAnswers();
   	}
-
-
 
     return {
       currentRound: currentRound,
       updateGame: updateGame,
       newRound: newRound,
       isOngoing: isOngoing,
+      threeCorrectAnswers: threeCorrectAnswers,
       clearScore: score.clearAnswers,
       score: score.correctAnswerCount,
       recentAnswerId: function(){
@@ -76,8 +75,8 @@ angular.module('myApp.gameServices', [])
     	nthRound: function(){
     		return correctAnswerIds.length + 1;
     	},
-    	finalRoundPlayed: function(){
-    		return correctAnswerIds.length > 2;
+    	threeCorrectAnswers: function(){
+    		return correctAnswerIds.length === 3;
     	},
     	correctAnswerCount: function(){
     		return correctAnswerIds.length;

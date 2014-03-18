@@ -4,6 +4,7 @@ describe("Unit: Testing Game Controller", function() {
       httpBackend;
 
 	var mockGame;
+  var mockCommentary;
 
 	beforeEach(function () {
 
@@ -23,11 +24,16 @@ describe("Unit: Testing Game Controller", function() {
         }
     };
 
+    mockCommentary = {
+        message: jasmine.createSpy('message')
+    }
+
     inject(function(_$httpBackend_, $rootScope, $controller){
      	scope = $rootScope.$new();
       httpBackend = _$httpBackend_;
     	controller = $controller("GameCtrl", {$scope: scope, 
-    																				game: mockGame });
+    																				game: mockGame,
+                                            commentary: mockCommentary });
     });
 
 	});
@@ -55,6 +61,11 @@ describe("Unit: Testing Game Controller", function() {
           score: 3
       }).respond({});
       scope.updateHighScores();
+    });
+
+    it("should call commentary service when answer submitted", function(){
+      scope.submitAnswer();
+      expect(mockCommentary.message).toHaveBeenCalled();
     });
 
 	});

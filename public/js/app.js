@@ -7,6 +7,7 @@ angular.module('myApp', [
   'myApp.filters',
   'myApp.wordServices',
   'myApp.gameServices',
+  'myApp.commentaryServices',
   'myApp.directives',
   'ngRoute'
 ]).config(function($routeProvider, $locationProvider) {

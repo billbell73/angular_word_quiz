@@ -9,7 +9,9 @@ angular.module('myApp.controllers', [])
   }).controller('GameCtrl', function($scope,
                                      $http, 
                                      $location,
-                                      game) {
+                                     $timeout,
+                                      game,
+                                      commentary) {
 
     game.clearScore();
     renderNewRound(); 
@@ -17,12 +19,14 @@ angular.module('myApp.controllers', [])
     function renderNewRound() {
       game.newRound();
       $scope.currentRound = game.currentRound();
+      $scope.commentary = "";
     }
 
     $scope.submitAnswer = function(answerId){
       game.updateGame(answerId);
+      $scope.commentary = commentary.message();
       if (game.isOngoing()) {
-        renderNewRound();
+        $timeout(function() { renderNewRound(); }, 700);
       } else {
         $scope.endGame = true;
       }

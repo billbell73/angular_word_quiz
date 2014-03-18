@@ -32,7 +32,7 @@ describe("Unit: Testing score in gameServices", function() {
 
   it('knows if it is before final round',
     inject(function(score) {
-    expect(score.finalRoundPlayed()).toEqual(false);
+    expect(score.threeCorrectAnswers()).toEqual(false);
   }));
 
    it('knows current score',

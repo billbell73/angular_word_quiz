@@ -11,7 +11,7 @@ describe("Unit: Testing game in gameServices", function() {
 	  mockScore = {
 	    nthRound: function () { return 2 },
       addCorrectAnswer: jasmine.createSpy('addCorrectAnswer'),
-      finalRoundPlayed: function() { return false }
+      threeCorrectAnswers: function() { return false }
 	  };
 
 		mockQuestion = {
@@ -72,6 +72,12 @@ describe("Unit: Testing game in gameServices", function() {
     inject(function(game) {
     game.updateGame(5);
     expect(game.isOngoing()).toBe(true);
+  }));
+
+  it('can tell if game finished with all correct answers',
+    inject(function(game) {
+    game.updateGame(5);
+    expect(game.threeCorrectAnswers()).toBe(false);
   }));
 
 
