@@ -9,7 +9,8 @@ describe("Unit: Testing commentaryServices", function() {
 
 	  mockGame = {
       threeCorrectAnswers: function(){ return false },
-      recentAnswerCorrect: function(){ return false }
+      recentAnswerCorrect: function(){ return false },
+      recentAnswerId: function(){ return 9 }
     };
 
     mockAnswers = {
@@ -52,7 +53,7 @@ describe("Unit: Testing commentaryServices", function() {
 
     it('should return appropriate button class',
       inject(function(buttonColour) {
-      expect(buttonColour.getClass()).toEqual('btn-danger');
+      expect(buttonColour.getClass(9)).toEqual('btn-danger');
     }));
 
   });

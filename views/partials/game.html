@@ -17,7 +17,7 @@
             <button class="btn btn-lg" id="{{answer.isCorrect}}" 
                     ng-click="submitAnswer(answer.id)" 
                     ng-disabled="endGame" 
-                    ng-class="getClass(answer.id)">
+                    ng-class="getButtonColour(answer.id)">
               {{answer.word}}
             </button> 
         </div>

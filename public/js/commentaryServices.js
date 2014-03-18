@@ -8,7 +8,7 @@
 /* Services */
 
 angular.module('myApp.commentaryServices', [])
-  .factory('commentary', function(game, answers){
+  .factory('commentary', function(game, answers, buttonColour){
 
     var victory = {
         message:'Congrats. 3 out of 3!',
@@ -40,6 +40,22 @@ angular.module('myApp.commentaryServices', [])
     }
 
     return {
-      message: message
+      message: message,
+      getButtonColour: buttonColour.getClass
+    };
+}).factory('buttonColour', function(game){
+
+    function buttonClass(buttonNumber){
+      var clickedButton = buttonNumber === game.recentAnswerId();
+      if(clickedButton && game.recentAnswerCorrect()){
+        return "btn-success";
+      }
+      else if(clickedButton) {
+        return "btn-danger";
+      }
+    };    
+    
+    return {
+      getClass: buttonClass
     };
 })

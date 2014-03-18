@@ -20,11 +20,13 @@ angular.module('myApp.controllers', [])
       game.newRound();
       $scope.currentRound = game.currentRound();
       $scope.commentary = "";
+      $scope.getButtonColour = "";
     }
 
     $scope.submitAnswer = function(answerId){
       game.updateGame(answerId);
       $scope.commentary = commentary.message();
+      $scope.getButtonColour = commentary.getButtonColour;
       if (game.isOngoing()) {
         $timeout(function() { renderNewRound(); }, 700);
       } else {
