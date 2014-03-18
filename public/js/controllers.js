@@ -43,4 +43,14 @@ angular.module('myApp.controllers', [])
     }
 
 
+  }).controller('HighScoreCtrl', function($scope, $http) {
+      
+      $http({
+        method: 'GET',
+        url: '/api/highscore'
+      }).
+      success(function(data) {
+        $scope.scoreBoard = data.scoreBoard;
+      });
+
   });

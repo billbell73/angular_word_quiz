@@ -1,0 +1,8 @@
+<p>High Scores</p>
+
+	<ul>
+		<li ng-repeat="player in scoreBoard | orderBy:'-score'" id="{{player.playerName}}">
+		  	{{player.playerName}}: {{player.score}} 
+		</li>  
+	</ul>
+  
