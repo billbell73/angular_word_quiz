@@ -7,6 +7,8 @@ describe('E2E: Testing Scorer view', function() {
   var input = element(by.model('playerName'));
   var submitButton = $('form #submit');
   var barryRow = $('#Barry');
+  var wrongAnswerAlert = $('.alert-danger');
+  var correctAnswerAlert = $('.alert-success');
 
 
 	beforeEach(function() {
@@ -49,6 +51,9 @@ describe('E2E: Testing Scorer view', function() {
     expect(correctAnswer.isEnabled()).toEqual(false);
   });
 
-
+  it('red alert box on wrong answer', function() {
+    wrongAnswer.click();
+    expect(wrongAnswerAlert.isDisplayed()).toEqual(true);
+  });
 
 });
