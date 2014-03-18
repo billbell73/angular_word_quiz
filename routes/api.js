@@ -1,9 +1,27 @@
 /*
- * Serve JSON to our AngularJS client
+ * Receive posted highscore data, store and
+ * serve JSON with highscore data to our AngularJS client
+ *
  */
 
-exports.name = function (req, res) {
+var highScorers = [{playerName: "Bob", score: 2},
+  								 {playerName: "Barbara", score: 1}];
+
+exports.highScore = function (req, res) {
   res.json({
-  	name: 'Bob'
+  	scoreBoard: highScorers
+  });
+};
+
+exports.addHighScore =  function(req, res) {
+	var newPlayer = {
+    playerName: req.body.playerName,
+    score: req.body.score
+  }
+
+  highScorers.push(newPlayer);
+
+  res.json({
+    scoreBoard: highScorers
   });
 };
