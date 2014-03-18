@@ -1,29 +1,31 @@
 angular_word_quiz
 =================
 
-##To run locally:
+##To run app locally:
 
 ```
 npm install
 bower install
 ```
 
-####For unit tests:
+####Unit tests:
 ```
 karma start 
 ```
 
-####For e2e tests:
+####e2e tests:
 ```
-node app.js  //*please keep node server running in separate terminal window, then:*
+node app.js  // please keep node server running in separate terminal window
 protractor protractor.conf.js
+```   
 
-```
 
-####To run app itself
+
+####App itself:
 
 ```
 node app.js
 ```
-then point browser to http://localhost:3000/game
+then point browser to [http://localhost:3000/game](http://localhost:3000/game)
+
 
